@@ -36,7 +36,7 @@ def export_leaderboard():
         return {"status":"no students available"}
 
     
-    reports_folder = Path("Reports")
+    reports_folder = Path(__file__).resolve().parent.parent / "Reports"
     reports_folder.mkdir(parents=True,  exist_ok=True)
 
     file_path = reports_folder /  "leaderboard.csv"
