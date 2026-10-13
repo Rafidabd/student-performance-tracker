@@ -13,7 +13,8 @@ from pathlib import Path
 from modules.config_loader import load_config
 
 # Loading the path from config
-DATA_FILE = Path(load_config()["data_file"])
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+DATA_FILE = PROJECT_DIR / load_config()["data_file"]
 
 def load_data():
     """
