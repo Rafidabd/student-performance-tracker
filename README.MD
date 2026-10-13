@@ -38,11 +38,11 @@ I built this while learning how to move from individual scripts to a multi-modul
 
 **Requirements:** Python 3 and Matplotlib.
 
-Clone the parent repository, then **run the application from its own folder** so relative data and report paths resolve correctly:
+Clone this standalone repository and run the application from its folder:
 
 ```bash
-git clone https://github.com/Rafidabd/python-phase-1.git
-cd python-phase-1/day13_Mini_Projects/student-performance-tracker
+git clone https://github.com/Rafidabd/student-performance-tracker.git
+cd student-performance-tracker
 python -m pip install -r requirements.txt
 python main.py
 ```
@@ -53,7 +53,7 @@ The program presents an interactive menu for student management, statistics, cha
 
 [`config.json`](config.json) defines the college label, sections, subjects, permitted mark range, passing mark, grade bands, and the JSON data-file path.
 
-By default, the program stores student records in `data/students.json`. The file is created if absent and is ignored by Git. Generated reports use the `Reports/` directory; example chart images and a sample leaderboard are included in this repository.
+By default, the program stores student records in `data/students.json`. The file is created if absent and is ignored by Git. Storage and report locations are resolved relative to this project rather than the terminal's working directory. Generated reports use the `Reports/` directory; example chart images and a sample leaderboard are included in this repository.
 
 Use sample or consented data. Avoid committing real students' personal records to a public repository.
 
@@ -86,6 +86,20 @@ I practiced organizing a program across modules, making configuration-driven cal
 
 ### Status and limitations
 
-This is an educational CLI application, not a production student-information system. It uses local JSON rather than a multi-user database. The existing `tests/` directory contains early testing material, but a comprehensive automated test suite has not been established here.
+This is an educational CLI application, not a production student-information system. It uses local JSON rather than a multi-user database. The `tests/` directory includes basic isolated storage regression tests, but a comprehensive automated test suite has not been established here.
 
-The newer [Bangladesh Academic Analytics System](../../academics_analytics_system/) is a separate project where I have continued exploring more involved academic analysis.
+The newer [Bangladesh Academic Analytics System](https://github.com/Rafidabd/python-phase-1/tree/main/academics_analytics_system) is a separate project where I have continued exploring more involved academic analysis.
+
+## Running tests
+
+From the project root:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Tests use temporary, fictional records and do not modify your normal JSON data file.
+
+## Project history
+
+This project was originally developed inside [my Python learning archive](https://github.com/Rafidabd/python-phase-1/tree/main/day13_Mini_Projects/student-performance-tracker). Git subtree extraction preserved the project's own development history in this standalone repository.
