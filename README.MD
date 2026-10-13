@@ -1,44 +1,42 @@
 # Student Performance Tracker
 
-A Python command-line application that stores student records, analyzes class performance, and produces charts and CSV reports.
+This started with a simple question: if I had a class's marks saved in one place, what else could I find out besides each student's total?
 
-I built this while learning how to move from individual scripts to a multi-module application. Beyond recording marks, I wanted to answer questions about rankings, section-level performance, and grade distributions.
+I was learning Python at the time and wanted to try a slightly bigger program. I made a command-line tracker that can manage student records, compare results across sections, make charts, and export a leaderboard.
 
-## Demo
+It's still a small project, but it was where I began getting interested in academic data beyond individual marks.
 
-![Student Performance Tracker CLI demonstration](Demo/Demo_project.gif)
+## See it working
 
-## Features
+![Demo of the command-line program](Demo/Demo_project.gif)
 
-**Student records**
-- Add, view, edit, and delete student entries.
-- Store student IDs, names, sections, and subject marks in a local JSON file.
-- Validate marks against the configured range.
+## What the program does
 
-**Academic summaries**
-- Rank students by total marks and identify overall and subject toppers.
-- Calculate class and section averages and identify section toppers.
-- View the top N students and filter by section or pass/fail result.
+You can add, view, edit, or delete students. The records include an ID, name, section, and marks in the subjects listed in [`config.json`](config.json).
 
-**Reports**
-- Generate charts for top performers, pass/fail counts, section averages, and grade distribution using Matplotlib.
-- Export a class leaderboard as CSV.
+It can also calculate:
+- Student rankings and the top N performers
+- Class averages, section averages, and section toppers
+- Subject toppers and overall topper
+- Pass/fail results and filters by section or result
 
-## Example visualizations
+I used Matplotlib to draw some of these results instead of showing everything as text. There's also an option to export the leaderboard as CSV.
 
-| Top performers | Pass / fail |
+## Charts
+
+| Top performers | Pass and fail counts |
 | --- | --- |
-| ![Top five students chart](Reports/top5_students.png) | ![Pass-fail comparison chart](Reports/pass_fail_analysis.png) |
+| ![Top five students](Reports/top5_students.png) | ![Pass and fail](Reports/pass_fail_analysis.png) |
 
-| Section averages | Grade distribution |
+| Section comparison | Grade distribution |
 | --- | --- |
-| ![Section-wise analysis](Reports/section_wise_analysis.png) | ![Grade distribution](Reports/grade_distribution.png) |
+| ![Section averages](Reports/section_wise_analysis.png) | ![Grade distribution](Reports/grade_distribution.png) |
 
-## Getting started
+These are example outputs included so you can see the kind of reports it produces.
 
-**Requirements:** Python 3 and Matplotlib.
+## How to run it
 
-Clone this standalone repository and run the application from its folder:
+You'll need Python 3 and Matplotlib.
 
 ```bash
 git clone https://github.com/Rafidabd/student-performance-tracker.git
@@ -47,59 +45,50 @@ python -m pip install -r requirements.txt
 python main.py
 ```
 
-The program presents an interactive menu for student management, statistics, charts, and exports.
+The program has a numbered terminal menu. Choose an option to add records, see statistics, export a CSV, or generate a chart.
 
-## Configuration and data
+The configuration file controls the subjects, sections, mark limits, pass mark, and grade boundaries. Student records are saved locally in `data/students.json`; the file is created automatically and ignored by Git. Reports go into `Reports/`.
 
-[`config.json`](config.json) defines the college label, sections, subjects, permitted mark range, passing mark, grade bands, and the JSON data-file path.
+Please use fictional or appropriately authorized records if you try it with student data.
 
-By default, the program stores student records in `data/students.json`. The file is created if absent and is ignored by Git. Storage and report locations are resolved relative to this project rather than the terminal's working directory. Generated reports use the `Reports/` directory; example chart images and a sample leaderboard are included in this repository.
-
-Use sample or consented data. Avoid committing real students' personal records to a public repository.
-
-## Structure
+## Project files
 
 ```text
 student-performance-tracker/
-├── Demo/                    # Animated CLI demo
-├── Reports/                 # Example charts / exported leaderboard
+├── Demo/                   # Short GIF of the program
+├── Reports/                # Sample charts and leaderboard
 ├── modules/
-│   ├── analytics.py         # Rankings and statistical calculations
-│   ├── cli.py               # Command-line menu
-│   ├── config_loader.py     # Reads config.json
-│   ├── display.py           # Terminal output formatting
-│   ├── export.py            # CSV leaderboard export
-│   ├── storage.py           # JSON persistence
-│   ├── student.py           # Student record operations
-│   ├── utils.py             # Report directory helper
-│   └── visualize.py         # Matplotlib charts
-├── tests/                   # Early test / inspection script
+│   ├── analytics.py        # Rankings and calculations
+│   ├── cli.py              # Menu and user input
+│   ├── config_loader.py
+│   ├── display.py
+│   ├── export.py           # CSV output
+│   ├── storage.py          # JSON data
+│   ├── student.py          # Student records
+│   ├── utils.py
+│   └── visualize.py        # Matplotlib charts
+├── tests/
+│   └── test_storage.py
 ├── config.json
 ├── main.py
 ├── requirements.txt
 └── README.MD
 ```
 
-## What this project taught me
+## Testing
 
-I practiced organizing a program across modules, making configuration-driven calculations, validating input, handling local JSON data, exporting structured results, and communicating those results visually.
-
-### Status and limitations
-
-This is an educational CLI application, not a production student-information system. It uses local JSON rather than a multi-user database. The `tests/` directory includes basic isolated storage regression tests, but a comprehensive automated test suite has not been established here.
-
-The newer [Bangladesh Academic Analytics System](https://github.com/Rafidabd/python-phase-1/tree/main/academics_analytics_system) is a separate project where I have continued exploring more involved academic analysis.
-
-## Running tests
-
-From the project root:
+Run the two basic storage tests from the project folder:
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-Tests use temporary, fictional records and do not modify your normal JSON data file.
+They check that an empty JSON store is created and that a sample student record can be saved and loaded. I haven't built a full set of tests for rankings, grading, charts, or the menu yet.
 
-## Project history
+## Looking back
 
-This project was originally developed inside [my Python learning archive](https://github.com/Rafidabd/python-phase-1/tree/main/day13_Mini_Projects/student-performance-tracker). Git subtree extraction preserved the project's own development history in this standalone repository.
+What I found interesting wasn't just calculating the average. It was seeing how one set of marks could be used to answer several questions about a class. I also learned that keeping student records, calculations, display code, and charts in separate modules makes it easier to find and change things later.
+
+The program still uses local JSON and has no login or multi-user features. My ongoing [Bangladesh Academic Analytics System](https://github.com/Rafidabd/python-phase-1/tree/main/academics_analytics_system) is a separate, more ambitious project growing from some of these interests.
+
+This tracker originally lived in [my Python practice repository](https://github.com/Rafidabd/python-phase-1/tree/main/day13_Mini_Projects/student-performance-tracker). I moved it to its own repository with its project-specific development history.
