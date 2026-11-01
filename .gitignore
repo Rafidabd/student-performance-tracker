@@ -1,4 +1,5 @@
 __pycache__/
 *.pyc
-data/students.json 
-
+data/students.json
+# Leaderboard exports are generated locally
+/Reports/leaderboard.csv
