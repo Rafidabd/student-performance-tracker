@@ -78,6 +78,6 @@ The two tests cover creating an empty data file and saving/loading a sample stud
 
 I hadn't worked with a program this size before. Separating the calculations, terminal menu, storage and charts into different files made it easier to work on one part without getting lost in the rest of the code.
 
-It still uses local JSON rather than a database and isn't meant to be a school management system. Some of the ideas I explored here later became part of my bigger [Academic Analytics project](https://github.com/Rafidabd/python-phase-1/tree/main/academics_analytics_system).
+It still uses local JSON rather than a database and isn't meant to be a school management system. Some of the ideas I explored here later became part of my bigger [Academic Analytics project](https://github.com/Rafidabd/Rafidabd/tree/main/projects/bangladesh-academic-analytics-system).
 
-This project was first built inside [my Python practice repository](https://github.com/Rafidabd/python-phase-1/tree/main/day13_Mini_Projects/student-performance-tracker); the relevant commit history is preserved here.
+I first built this as part of my Python practice work, then moved it into its own repository. The earlier commits are still here.
